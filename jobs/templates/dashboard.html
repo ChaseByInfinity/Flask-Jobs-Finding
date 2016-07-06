@@ -1,0 +1,75 @@
+{% extends "header.html" %}
+
+{% block title %} Dashboard {% endblock %}
+
+
+{% block header %} 
+{% endblock %}
+
+{% block body %}
+  <center>
+<section id="one">
+  
+    <div class="container wow fadeInUp __web-inspector-hide-shortcut__" style="visibility: visible; animation-name: fadeInUp;">
+
+    
+    <div style="margin-top:70px;" class="card card-block text-xs-center">
+      <h3 class="card-title">Dashboard</h3>
+      <p class="card-text">
+       
+        
+       <p> Welcome to your dashboard, {{ session.username }}.  </p>
+          
+        <p>Here you'll find relevant information including job listing notification, application response, and profile settings.</p>
+     
+        
+        <div class="row">
+  <div class="col-sm-4">My Listings<br>
+      {% if not listings %}
+      <span class="label label-danger"> No listings found </span>
+      <br><br>
+      <a href="/new/job/"><btn class="btn btn-primary">Post job</btn></a>
+            {% else %}
+{% for listing in listings %}
+<a href="job/{{ listing.id }}" style="text-decoration:none;">{{ listing.job_name }} </a><br>
+            {% endfor %}
+      <a href="/new/job/"><btn class="btn btn-primary">Post job</btn></a>
+{% endif %}
+      
+            
+            </div>
+  <div class="col-sm-4">My Applications<br>
+      {% if not applications %}
+      <span class="label label-danger">No applications found</span>
+   
+      {% else %}
+      {% for app in applications %}
+<a href="/application/{{ app.id }}" style="text-decoration:none;">{{ app.date_applied.strftime('%m/%d/%Y') }} </a><br>
+            {% endfor %}
+      
+     
+      {% endif %}
+            
+            </div>
+  <div class="col-sm-4">Profile Control
+            
+            <br><br>
+     <a href="/edit/profile/"><btn class="btn btn-primary">Edit my profile</btn></a> 
+      <br><br>
+      <a href="/delete/profile/"><btn class="btn btn-primary">Delete my account</btn></a>
+            
+            </div>
+</div>
+        
+        
+    </div>
+  
+  
+     
+
+</section>
+  </center> 
+
+
+
+    {% endblock %}

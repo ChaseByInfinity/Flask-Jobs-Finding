@@ -1,0 +1,53 @@
+{% extends "header.html" %}
+
+{% block title %} New Job {% endblock %}
+
+
+{% block header %} 
+{% endblock %}
+
+{% block body %}
+  <center>
+<section id="one">
+  
+    <div class="container wow fadeInUp __web-inspector-hide-shortcut__" style="visibility: visible; animation-name: fadeInUp;">
+
+    
+    <div style="margin-top:70px;" class="card card-block text-xs-center">
+      <h3 class="card-title">New Job Listing</h3>
+      <p class="card-text">
+        
+         <form method="POST" action="/new/job/">
+        
+        <input type="text" name="job_name" id="job_name" class="form-control" placeholder="Job Name">
+        <br>
+             <textarea name="job_desc" id="job_desc" class="form-control" style="resize:vertical" placeholder="Job Description"></textarea>
+     <br>
+        <div class="form-group">
+  <label for="sel1">Category</label>
+  <select class="form-control" name="category" id="sel1">
+      {% for category in categories %}
+    <option>{{ category.cat_name }} </option>
+   {% endfor %}
+  </select>
+</div>
+     
+          
+        <input type="submit" class="btn btn-primary" value="Post it!">
+        </form>
+        
+        
+        
+        
+     
+    </div>
+  
+  
+     
+
+</section>
+  </center> 
+
+
+
+    {% endblock %}
